@@ -15,7 +15,7 @@ body {
   -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
   border-radius: 20px;
-  max-width: 960px;
+  max-width: 1220px;
   margin: 50px auto; }
 
 .logo {
@@ -68,6 +68,7 @@ h1 {
   width: 210px;
   border-radius: 40px;
   margin-right: 30px;
+  margin-bottom: 30px;
   -webkit-transition: -webkit-box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
   transition: -webkit-box-shadow 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
   -o-transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
@@ -170,7 +171,7 @@ h2 {
       opacity: 1; }
 
 .cartTotalBlock {
-  margin-top: 270px; }
+  margin-top: 180px; }
   .cartTotalBlock li {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -200,7 +201,7 @@ h2 {
     transform: translateX(10px); }
   .greenButton img {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 8px;
     -webkit-transition: -webkit-transform 0.2s ease-in-out;
     transition: -webkit-transform 0.2s ease-in-out;

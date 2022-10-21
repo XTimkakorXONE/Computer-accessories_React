@@ -1,6 +1,6 @@
 import React from "react";
-
-const Header = () => {
+import "macro-css";
+const Header = (props) => {
   return (
     <header>
       <div className="headerLeft">
@@ -17,7 +17,7 @@ const Header = () => {
         </div>
       </div>
       <ul className="headerRight">
-        <li>
+        <li className="cu-p" onClick={props.onClickCart}>
           <img
             className="basket"
             src="/img/baskete2.png"
