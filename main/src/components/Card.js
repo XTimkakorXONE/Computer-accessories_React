@@ -1,37 +1,77 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import ContentLoader from "react-content-loader";
+import { AppContext } from "../App";
+const Card = ({
+  id,
+  title,
+  img,
+  price,
+  onFavorite,
+  onPlus,
+  favorited = false,
+  added = false,
+  loading = false,
+}) => {
+  const { isItemAdded } = React.useContext(AppContext);
 
-const Card = ({ title, img, price, onFavorite, onPlus }) => {
-  const [isAdded, setIsAdded] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(favorited);
+
+  console.log(title, isItemAdded(id));
 
   const onCLickPlus = () => {
-    {
-      !isAdded && onPlus({ title, img, price });
-    }
-    setIsAdded(!isAdded);
+    onPlus({ id, title, img, price });
+  };
+
+  const onClickFavorite = () => {
+    onFavorite({ id, title, img, price });
+    setIsFavorite(!isFavorite);
   };
 
   return (
     <div className="card">
-      <div className="favorite" onClick={onFavorite}>
-        <img src="/img/heart.svg" width={20} alt="heart" />
-      </div>
-      <img src={img} alt="Hyperx" width={133} height={123} />
-      <h5>{title}</h5>
-      <div className="cardBottom">
-        <div className="cost">
-          <span>Цена:</span>
-          <br></br>
-          <b>{price}</b>
-        </div>
-        <button className="button" onClick={onCLickPlus}>
-          <img
-            width={23}
-            height={23}
-            src={isAdded ? "/img/checkedPlus.svg" : "/img/add.png"}
-            alt="plus"
-          />
-        </button>
-      </div>
+      {loading ? (
+        <ContentLoader
+          speed={2}
+          width={155}
+          height={250}
+          viewBox="0 0 155 265"
+          backgroundColor="#f1f1f1"
+          foregroundColor="#ecebeb"
+        >
+          <rect x="1" y="0" rx="10" ry="10" width="155" height="155" />
+          <rect x="0" y="167" rx="5" ry="5" width="155" height="15" />
+          <rect x="0" y="187" rx="5" ry="5" width="100" height="15" />
+          <rect x="1" y="234" rx="5" ry="5" width="80" height="25" />
+          <rect x="124" y="230" rx="10" ry="10" width="32" height="32" />
+        </ContentLoader>
+      ) : (
+        <>
+          <div className="favorite" onClick={onClickFavorite}>
+            <img
+              src={isFavorite ? "/img/heartLiked.svg" : "/img/heart.svg"}
+              width={20}
+              alt="heart"
+            />
+          </div>
+          <img src={img} alt="img_device" width="100%" height={135} />
+          <h5>{title}</h5>
+          <div className="cardBottom">
+            <div className="cost">
+              <span>Цена:</span>
+              <br></br>
+              <b>{price}</b>
+            </div>
+            <button className="button" onClick={onCLickPlus}>
+              <img
+                width={23}
+                height={23}
+                src={isItemAdded(id) ? "/img/checkedPlus.svg" : "/img/add.png"}
+                alt="plus"
+              />
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };
