@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Computer-accessories_React/static/css/main.beec9f65.css",
+    "main.js": "/Computer-accessories_React/static/js/main.9b85d5c5.js",
+    "index.html": "/Computer-accessories_React/index.html",
+    "main.beec9f65.css.map": "/Computer-accessories_React/static/css/main.beec9f65.css.map",
+    "main.9b85d5c5.js.map": "/Computer-accessories_React/static/js/main.9b85d5c5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.beec9f65.css",
+    "static/js/main.9b85d5c5.js"
+  ]
+}
