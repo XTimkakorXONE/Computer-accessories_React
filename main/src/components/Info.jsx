@@ -20,7 +20,7 @@ const Info = ({ title, image, description }) => {
         className="greenButton decor"
       >
         <span>Вернуться назад</span>
-        <img src="/img/arrow.png" alt="arrow" width={32} height={32} />
+        <img src="img/arrow.png" alt="arrow" width={32} height={32} />
       </button>
     </div>
   );

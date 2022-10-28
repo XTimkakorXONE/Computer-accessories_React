@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
-import { AppContext } from "../App";
-import Info from "./Info";
+import React, { useState } from "react";
 import axios from "axios";
+
+import Info from "./Info";
+import { useCart } from "../hooks/useCart";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const CartDrawer = ({ onClose, onRemove, items = [] }) => {
-  const { cartItems, setCartItems } = useContext(AppContext);
-
+const CartDrawer = ({ onClose, onRemove, items = [], opened }) => {
+  const { cartItems, setCartItems, totalPrice } = useCart();
   const [orderId, setOrderId] = useState(null);
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +31,7 @@ const CartDrawer = ({ onClose, onRemove, items = [] }) => {
         await axios.delete(
           "https://63501a6edf22c2af7b6369ec.mockapi.io/cart/" + item.id
         );
-        delay(2000);
+        delay(1000);
       }
     } catch (error) {
       console.log("Не удалось создать заказ");
@@ -40,13 +40,13 @@ const CartDrawer = ({ onClose, onRemove, items = [] }) => {
   };
 
   return (
-    <div className="overlay">
+    <div className={` overlay ${opened ? "overlayVisible" : ""}`}>
       <div className="drawer">
         <h2 className="d-flex justify-between ">
           Корзина{" "}
           <img
             className="removeBtn cu-p"
-            src="/img/cross.svg"
+            src="img/cross.svg"
             alt="remove"
             width={20}
             height={35}
@@ -72,7 +72,7 @@ const CartDrawer = ({ onClose, onRemove, items = [] }) => {
                   </div>
                   <img
                     className="removeBtn"
-                    src="/img/cross.svg"
+                    src="img/cross.svg"
                     alt="remove"
                     width={15}
                     height={15}
@@ -86,12 +86,12 @@ const CartDrawer = ({ onClose, onRemove, items = [] }) => {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>21 489 руб. </b>
+                  <b>{totalPrice} руб. </b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>1074 руб. </b>
+                  <b>{totalPrice * 0.05} руб. </b>
                 </li>
               </ul>
               <button
@@ -100,7 +100,7 @@ const CartDrawer = ({ onClose, onRemove, items = [] }) => {
                 className="decor greenButton"
               >
                 Оформить заказ
-                <img src="/img/arrow.png" alt="arrow" width={40} height={40} />
+                <img src="img/arrow.png" alt="arrow" width={40} height={40} />
               </button>
             </div>
           </div>
@@ -113,7 +113,7 @@ const CartDrawer = ({ onClose, onRemove, items = [] }) => {
                 : "Добавьте хотя бы 1 девайс, чтобы оформить заказ"
             }
             image={
-              isOrderComplete ? "/img/orderComplete.jpg" : "/img/emptyCart.jpg"
+              isOrderComplete ? "img/orderComplete.jpg" : "img/emptyCart.jpg"
             }
           />
         )}

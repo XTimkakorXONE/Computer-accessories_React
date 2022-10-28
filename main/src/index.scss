@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: #e6e6e6;
+  background-color: #ffd7f994;
   padding-left: 30px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -25,7 +25,7 @@ body {
 }
 
 .logo {
-  border-radius: 20px;
+  border-radius: 30px;
 }
 
 header {
@@ -33,12 +33,18 @@ header {
   justify-content: space-between;
   border-bottom: 1px solid #eaeaea;
   padding: 20px 20px;
+
   img {
     margin-right: 15px;
   }
+
   h3,
   p {
     margin: 0;
+  }
+  p {
+    font-weight: 500;
+    color: rgb(0, 0, 0);
   }
   .headerLeft {
     display: flex;
@@ -72,7 +78,7 @@ li span {
   position: absolute;
   bottom: 10px;
   width: 90px;
-  left: -50px;
+  left: -60px;
 }
 
 .content {
@@ -215,6 +221,16 @@ h1 {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+.overlayVisible {
+  visibility: visible;
+  opacity: 1;
+  .drawer {
+    transform: translatex(0%);
+  }
 }
 .drawer {
   display: flex;
@@ -226,6 +242,8 @@ h1 {
   background: #ffffff;
   box-shadow: -10px 4px 24px rgba(0, 0, 0, 0.1);
   padding: 20px;
+  transform: translatex(100%);
+  transition: transform 0.3s ease-in-out;
 
   .cool {
     overflow: hidden;

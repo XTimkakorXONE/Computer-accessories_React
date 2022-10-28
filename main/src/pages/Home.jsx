@@ -24,6 +24,7 @@ const Home = ({
       <Card
         key={id}
         id={id}
+        parentId={item.id}
         loading={isLoading}
         title={item.title}
         price={item.price}
@@ -38,15 +39,15 @@ const Home = ({
     <div className="content">
       <div className="header_search">
         <h1>
-          {searchValue ? `Поиск по запросу: ${searchValue} ` : "Все Аксессуары"}
+          {searchValue ? `Поиск по запросу: ${searchValue} ` : "All devices"}
         </h1>
         <div className="search-block">
-          <img src="/img/search.png" alt="search" width={20} height={18} />
+          <img src="img/search.png" alt="search" width={20} height={18} />
           {searchValue && (
             <img
               onClick={() => setSearchValue("")}
               className="clear removeBtn cu-p"
-              src="/img/crossX.png"
+              src="img/crossX.png"
               alt="clear"
               width={20}
               height={35}
